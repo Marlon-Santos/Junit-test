@@ -9,7 +9,7 @@ import br.com.gft.unitTest.utils.DataUtils;
 
 public class LocacaoService {
 	
-	public Locacao alugarFilme(Usuario usuario, Filme filme) {
+	public  Locacao alugarFilme(Usuario usuario, Filme filme) {
 		Locacao locacao = new Locacao();
 		locacao.setFilme(filme);
 		locacao.setUsuario(usuario);
@@ -28,6 +28,12 @@ public class LocacaoService {
 	}
 
 	public static void main(String[] args) {
-		
+		LocacaoService locacaoService = new LocacaoService();
+		Usuario u1 = new Usuario("malon ergon dos santos");
+		Filme f1 = new Filme("Avangers",10,10.00);
+		Locacao l1 = locacaoService.alugarFilme(u1,f1);
+		System.out.println(DataUtils.isMesmaData(l1.getDataLocacao(),new Date()));
+		System.out.println(DataUtils.isMesmaData(DataUtils.obterDataComDiferencaDias(1),l1.getDataRetorno()));
+		System.out.println(l1.getValor() == 10);
 	}
 }
