@@ -2,7 +2,7 @@ package br.com.gft.unitTest.servicos;
 
 import org.junit.*;
 
-public class AfterAndBefore {
+public class AfterAndBeforeTest {
 
     private static int cont = 0;
 
