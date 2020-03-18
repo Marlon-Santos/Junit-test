@@ -1,7 +1,6 @@
 package br.com.gft.unitTest.servicos;
 
 import br.com.gft.unitTest.entidades.Usuario;
-import org.hamcrest.MatcherAssert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;

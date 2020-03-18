@@ -5,11 +5,19 @@ import java.util.Date;
 import br.com.gft.unitTest.entidades.Filme;
 import br.com.gft.unitTest.entidades.Locacao;
 import br.com.gft.unitTest.entidades.Usuario;
+import br.com.gft.unitTest.exceptions.LocacaoServiceException;
 import br.com.gft.unitTest.utils.DataUtils;
 
 public class LocacaoService {
 
-    public Locacao alugarFilme(Usuario usuario, Filme filme) {
+    public Locacao alugarFilme(Usuario usuario, Filme filme) throws LocacaoServiceException {
+        if (filme == null){
+            throw new LocacaoServiceException("sem filme");
+        }if (filme.getEstoque() <= 0){
+            throw new LocacaoServiceException("sem estoque");
+        }if (usuario == null){
+            throw new LocacaoServiceException("sem cadastro");
+        }
         Locacao locacao = new Locacao();
         locacao.setFilme(filme);
         locacao.setUsuario(usuario);
