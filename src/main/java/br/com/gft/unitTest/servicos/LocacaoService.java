@@ -1,5 +1,6 @@
 package br.com.gft.unitTest.servicos;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -52,7 +53,12 @@ public class LocacaoService {
 
         //Entrega no dia seguinte
         Date dataEntrega = new Date();
-        dataEntrega = DataUtils.adicionarDias(dataEntrega, 1);
+        if (DataUtils.verificarDiaSemana(dataEntrega, Calendar.SATURDAY)) {
+            dataEntrega = DataUtils.adicionarDias(dataEntrega, 2);
+        } else {
+            dataEntrega = DataUtils.adicionarDias(dataEntrega, 1);
+        }
+
         locacao.setDataRetorno(dataEntrega);
 
         //Salvando a locacao...
