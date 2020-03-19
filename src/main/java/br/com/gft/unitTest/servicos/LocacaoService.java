@@ -29,6 +29,22 @@ public class LocacaoService {
         locacao.setUsuario(usuario);
         locacao.setDataLocacao(new Date());
 
+
+        for (int size = filme.size(); size >= 3; size--) {
+            if (size >= 6) {
+                filme.get(5).setPrecoLocacao(0.00);
+            }
+            if (size == 5) {
+                filme.get(4).setPrecoLocacao(filme.get(4).getPrecoLocacao() * 0.25);
+            }
+            if (size == 4) {
+                filme.get(3).setPrecoLocacao(filme.get(3).getPrecoLocacao() * 0.50);
+            }
+            if (size == 3) {
+                filme.get(2).setPrecoLocacao(filme.get(2).getPrecoLocacao() * 0.75);
+            }
+        }
+
         for (Filme filmes : filme) {
             value += filmes.getPrecoLocacao();
         }
