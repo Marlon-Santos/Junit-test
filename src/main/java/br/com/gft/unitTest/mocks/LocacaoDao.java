@@ -1,4 +1,4 @@
-package br.com.gft.unitTest.daos;
+package br.com.gft.unitTest.mocks;
 
 import br.com.gft.unitTest.entidades.Locacao;
 

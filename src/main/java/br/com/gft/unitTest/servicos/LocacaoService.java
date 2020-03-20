@@ -4,17 +4,19 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import br.com.gft.unitTest.daos.LocacaoDao;
+import br.com.gft.unitTest.mocks.LocacaoDao;
 import br.com.gft.unitTest.entidades.Filme;
 import br.com.gft.unitTest.entidades.Locacao;
 import br.com.gft.unitTest.entidades.Usuario;
 import br.com.gft.unitTest.exceptions.LocacaoServiceException;
+import br.com.gft.unitTest.mocks.SPC;
 import br.com.gft.unitTest.utils.DataUtils;
-import org.mockito.Mockito;
 
 public class LocacaoService {
     public double value = 0;
     private LocacaoDao locacaoDao;
+    private SPC spc;
+
     public Locacao alugarFilme(Usuario usuario, List<Filme> filme) throws LocacaoServiceException {
         if (filme == null) {
             throw new LocacaoServiceException("sem filme");
@@ -63,6 +65,9 @@ public class LocacaoService {
 
         locacao.setDataRetorno(dataEntrega);
 
+        if(spc.isNegative(usuario)){
+            throw new LocacaoServiceException("usuario negativado");
+        }
         //Salvando a locacao...
         locacaoDao.salvar(locacao);
         return locacao;
@@ -82,5 +87,13 @@ public class LocacaoService {
 
     public void setLocacaoDao(LocacaoDao locacaoDao) {
         this.locacaoDao = locacaoDao;
+    }
+
+    public SPC getSpc() {
+        return spc;
+    }
+
+    public void setSpc(SPC spc) {
+        this.spc = spc;
     }
 }
